@@ -25,7 +25,7 @@ SECRET_KEY = '(qake@oo53_a96+w*r+0wv*0^wu843jvvqkq=+fb#y+@$h$9_a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
