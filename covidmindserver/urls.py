@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from covidmindapi import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/activities/', api_views.AllActivities.as_view()),
+    path('api/v1/activities/<int:pk>', api_views.ActivityDetail.as_view()),
+    path('api/v1/activities/latest', api_views.LatestActivities.as_view())
 ]

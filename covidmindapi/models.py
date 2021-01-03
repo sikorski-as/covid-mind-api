@@ -18,7 +18,7 @@ class Activity(models.Model):
     date = models.DateField(auto_now_add=True)
     categories = models.ManyToManyField(Category, blank=True)
     link = models.URLField()
-    visible = models.BooleanField()
+    visible = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = 'Activities'
