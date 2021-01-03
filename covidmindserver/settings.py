@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'covidmindserver.urls'
@@ -121,6 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILE_DIR = BASE_DIR / 'static'
-STATICFILES_DIRS = [STATICFILE_DIR]
-os.makedirs(STATICFILE_DIR, exist_ok=True)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILE_DIR = BASE_DIR / 'static'
+# STATICFILES_DIRS = [STATICFILE_DIR]
+# os.makedirs(STATICFILE_DIR, exist_ok=True)
