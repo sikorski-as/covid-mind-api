@@ -121,5 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [STATIC_ROOT]
-os.makedirs(STATIC_ROOT, exist_ok=True)
+STATICFILE_DIR = BASE_DIR / 'static'
+STATICFILES_DIRS = [STATICFILE_DIR]
+os.makedirs(STATICFILE_DIR, exist_ok=True)
