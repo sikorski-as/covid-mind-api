@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -83,6 +85,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.parse(os.environ('DATABASE_URL'), conn_max_age=600)
+DATABASES['default'].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -123,6 +128,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILE_DIR = BASE_DIR / 'static'
-# STATICFILES_DIRS = [STATICFILE_DIR]
-# os.makedirs(STATICFILE_DIR, exist_ok=True)
