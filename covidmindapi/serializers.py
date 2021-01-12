@@ -2,27 +2,18 @@ import datetime
 
 from rest_framework import serializers
 
-from .models import Activity, Category
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    name = serializers.CharField(max_length=20)
-    color = serializers.CharField(max_length=10)
-
-    class Meta:
-        verbose_name_plural = 'Categories'
-        model = Category
-        fields = '__all__'
-
-    def __str__(self):
-        return f'{self.name} ({self.color})'
+from .models import Activity
 
 
 class ActivitySerializer(serializers.ModelSerializer):
     title = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=500)
     date = serializers.DateField(initial=datetime.date.today)
-    categories = CategorySerializer(many=True)
+    categories = serializers.SerializerMethodField(read_only=True)
+
+    def get_categories(self, instance):
+        return [category.name for category in instance.categories.all()]
+
     link = serializers.URLField()
 
     class Meta:
